@@ -100,6 +100,19 @@ public class BST
 			printInOrder(rt.right);
 		}
 	}
+	public void closestInBST(int n)
+	{
+		int closest = Integer.MAX_VALUE;
+		System.out.println(closestInBST(root,closest,n));
+	}
+	private int closestInBST(BSTNode rt, int closest, int n)
+	{
+		if(rt == null) return closest;
+		if(Math.abs(n - closest) > Math.abs(n - rt.data)) closest = rt.data;
+		if(n < rt.data) return closestInBST(rt.left , closest , n);
+		else if(n > rt.data) return closestInBST(rt.right, closest , n);
+		else return closest;
+	}
 	
 }
 class BSTree
@@ -115,6 +128,7 @@ class BSTree
 		bst.printInOrder();
 		bst.delete(4);
 		bst.printInOrder();
+		bst.closestInBST(9);
 		
 	}
 }
